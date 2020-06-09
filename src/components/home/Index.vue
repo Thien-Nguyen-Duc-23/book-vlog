@@ -56,252 +56,26 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 blogBox moreBox">
+                        <div v-for="book in books" :key="book.id" class="col-lg-6 col-md-6 blogBox moreBox">
                             <div class="article-grid hover-shine mb-45">
                                 <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/13.jpg" alt="Recent Articles"></a>
+                                    <a href="standard-post.html"><img v-bind:src="getImage(book.conver)"></a>
                                 </figure>
                                 <div class="article-content">
                                     <div class="categories">
                                         <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
+                                            <li><a href="categories.html">{{ book.isbn }}</a></li>
                                         </ul>
                                     </div>
                                     <div class="post-date-author">
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
+                                            <li><i class="fa fa-calendar"></i>{{ book.created_at.date | formatDate }}</li>
+                                            <li><a href="#"><i class="fa fa-user-o"></i>{{ book.author }}</a></li>
                                         </ul>
                                     </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
+                                    <h3 class="article-title"><a href="standard-post.html">{{ book.short_title }}</a></h3>
                                     <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox">
-                            <div class="article-grid hover-shine mb-45">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/14.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox">
-                            <div class="article-grid hover-shine mb-45">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/15.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox">
-                            <div class="article-grid hover-shine mb-45">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/16.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox">
-                            <div class="article-grid hover-shine sm-mb-45">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/17.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox">
-                            <div class="article-grid hover-shine">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/18.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox article-load">
-                            <div class="article-grid hover-shine mt-40">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/18.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox article-load">
-                            <div class="article-grid hover-shine mt-40">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/17.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox article-load">
-                            <div class="article-grid hover-shine mt-45">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/16.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 blogBox moreBox article-load">
-                            <div class="article-grid hover-shine mt-45">
-                                <figure>
-                                    <a href="standard-post.html"><img src="/static/images/recent-articles/13.jpg" alt="Recent Articles"></a>
-                                </figure>
-                                <div class="article-content">
-                                    <div class="categories">
-                                        <ul>
-                                            <li><a href="categories.html">Business</a></li>
-                                            <li><a href="categories.html">Lifestyle</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-date-author">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>Yammi Guan</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="article-title"><a href="standard-post.html">Man in Red Plaid Shirt Talking Phone on Terrace</a></h3>
-                                    <div class="desc">
-                                        On the other hand, we denounce with righteous indig nation the foult anuals dislike men who are so be guiled and demoralized
+                                        {{ book.short_desc }}
                                     </div>
                                 </div>
                             </div>
@@ -347,6 +121,7 @@
   import Category from '../home/Category.vue'
   import Instagram from '../common/Instagram.vue'
   import SearchModal from '../common/SearchModal.vue'
+  import {HTTP} from '../store/getURL.js';
 
   export default {
     components: {
@@ -357,6 +132,26 @@
       Category,
       Instagram,
       SearchModal
+    },
+    data: () => ({
+      books: [],
+      errors: []
+    }),
+    created() {
+      HTTP.get('book/index')
+      .then(response => {
+        const { books } = response.data.data;
+        this.books = books;
+        console.log(this.books);
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    },
+    methods: {
+      getImage(image){
+        return image;
+      }
     }
   }
 </script>

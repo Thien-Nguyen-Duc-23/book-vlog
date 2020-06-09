@@ -57,26 +57,8 @@
                                   <nav class="rs-menu">
                                       <ul class="nav-menu text-center">
                                       <!-- Home -->
-                                      <li class="current-menu-item current_page_item menu-item-has-children"> <a href="#" class="home">Home</a>
-                                          <ul class="sub-menu">
-                                              <li class="active"><a href="index.html">Main Home</a> </li>
-                                              <li><a href="index2.html">Home Personal</a> </li>
-                                              <li><a href="index3.html">Home Travel</a></li>
-                                              <li><a href="index4.html">Home Food</a> </li>
-                                              <li><a href="index5.html">Home Fashion</a>
-                                              <li class="last-item"><a href="index6.html">Home Business</a></li>
-                                          </ul>
-                                      </li>
+                                      <li class="current-menu-item current_page_item menu-item-has-children"><a href="#" class="home">Home</a></li>
                                       <!-- End Home -->
-
-                                      <!--About Start-->
-                                      <li class="menu-item-has-children"><a href="#">About</a>
-                                          <ul class="sub-menu">
-                                              <li><a href="about-us.html">About Us</a></li>
-                                              <li class="last-item"><a href="about-me.html">About Me</a></li>
-                                          </ul>
-                                      </li>
-                                      <!--About End-->
 
                                       <!--Categories Menu Start -->
                                       <li class="menu-item-has-children"> <a href="#">Categories</a>
@@ -90,21 +72,12 @@
                                       </li>
                                       <!--Categories Menu End -->
 
+                                      <!--About Start-->
+                                      <li class="menu-item-has-children"><a href="#">About</a></li>
+                                      <!--About End-->
+
                                       <!--Single Post Start-->
-                                      <li class="menu-item-has-children"> <a href="#">Single Post</a>
-                                          <ul class="sub-menu">
-                                              <li><a href="standard-post.html">Standard Post One</a></li>
-                                              <li><a href="standard-post2.html">Standard Post Two</a></li>
-                                              <li><a href="standard-post3.html">Standard Post Three</a></li>
-                                              <li class="menu-item-has-children last-item"><a href="#">Post Style</a>
-                                                  <ul class="sub-menu">
-                                                      <li><a href="image-post.html">Image Post</a></li>
-                                                      <li><a href="video-post.html">Video Post</a></li>
-                                                      <li><a href="gallery-post.html">Gallery Post</a></li>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
+                                      <li class="menu-item-has-children"> <a href="#">Single Post</a></li>
                                       <!--Single Post End-->
 
                                       <!--Contact Menu Start-->
