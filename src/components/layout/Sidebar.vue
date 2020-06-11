@@ -126,14 +126,42 @@
               <div class="sidebar-title text-center">
                 <h3 class="title uppercase mb-20">Categories</h3>
               </div>
-              <ul class="category-tags">
-                  <li><a href="categories.html"># Business <span>(05)</span></a></li>
-                  <li><a href="categories5.html"># Lifestyle <span>(05)</span></a></li>
-                  <li><a href="categories5.html"># Fashion <span>(05)</span></a></li>
-                  <li><a href="categories4.html"># Pro Food <span>(05)</span></a></li>
-                  <li><a href="categories3.html"># Tour & Travel <span>(05)</span></a></li>
+              <ul class="category-tags" >
+                  <li v-for="category in categorySibar" :key="category.id">
+                    <div v-if="category.children_category != []">
+                      <a href="#"># {{ category.name }} <span>({{ category.books }})</span></a>
+                      <ul v-if="category.children_category != []" >
+                        <li v-for="children in category.children_category" :key="children.id">
+                          <a href="#"># {{ children.name }} <span>({{ children.books }})</span></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <a v-else href="#"># {{ category.name }} <span>({{ category.books }})</span></a>
+                  </li>
               </ul>
           </div>
       </div>
   </div>
 </template>
+
+<script>
+  import {HTTP} from '../store/getURL.js';
+
+  export default {
+    data: () => ({
+      categorySibar: [],
+      errors: []
+    }),
+    created() {
+      HTTP.get('category/list')
+      .then(response => {
+        const { categories } = response.data.data;
+        this.categorySibar = categories;
+        console.log(this.categorySibar);
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    }
+  }
+</script>
