@@ -63,11 +63,10 @@
                                       <!--Categories Menu Start -->
                                       <li class="menu-item-has-children"> <a href="#">Categories</a>
                                           <ul class="sub-menu">
-                                              <li><a href="categories.html">Categories One</a> </li>
-                                              <li><a href="categories2.html">Categories Two</a> </li>
-                                              <li><a href="categories3.html">Categories Three</a> </li>
-                                              <li><a href="categories4.html">Categories Four</a> </li>
-                                              <li class="last-item"><a href="categories5.html">Categories Five</a> </li>
+                                              <li v-for="category in categories" :key="category.id" class="last-item">
+                                                <!-- <a v-if="category.children_category != []">hh</a> -->
+                                                <a href="#">{{ category.name }}</a>
+                                              </li>
                                           </ul>
                                       </li>
                                       <!--Categories Menu End -->
@@ -124,3 +123,25 @@
       <!--Full width header End-->
   </div>
 </template>
+
+<script>
+  import {HTTP} from '../store/getURL.js';
+
+  export default {
+    data: () => ({
+      categories: [],
+      errors: []
+    }),
+    created() {
+      HTTP.get('category/list')
+      .then(response => {
+        const { categories } = response.data.data;
+        this.categories = categories;
+        console.log(this.categories);
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    }
+  }
+</script>
