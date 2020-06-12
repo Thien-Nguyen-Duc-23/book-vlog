@@ -59,21 +59,21 @@
                         <div v-for="book in books" :key="book.id" class="col-lg-6 col-md-6 blogBox moreBox">
                             <div class="article-grid hover-shine mb-45">
                                 <figure>
-                                    <a href="standard-post.html"><img v-bind:src="getImage(book.conver)"></a>
+                                    <a @click="bookDetail(book)"><img v-bind:src="getImage(book.conver)"></a>
                                 </figure>
                                 <div class="article-content">
                                     <div class="categories">
                                         <ul>
-                                            <li><a href="categories.html">{{ book.isbn }}</a></li>
+                                            <li><a href="#">{{ book.isbn }}</a></li>
                                         </ul>
                                     </div>
                                     <div class="post-date-author">
                                         <ul>
                                             <li><i class="fa fa-calendar"></i>{{ book.created_at.date | formatDate }}</li>
-                                            <li><a href="#"><i class="fa fa-user-o"></i>{{ book.author }}</a></li>
+                                            <li><a href=""><i class="fa fa-user-o"></i>{{ book.author }}</a></li>
                                         </ul>
                                     </div>
-                                    <h3 class="article-title"><a href="standard-post.html">{{ book.short_title }}</a></h3>
+                                    <h3 class="article-title"><a @click="bookDetail(book)">{{ book.short_title }}</a></h3>
                                     <div class="desc">
                                         {{ book.short_desc }}
                                     </div>
@@ -121,7 +121,8 @@
   import Category from '../home/Category.vue'
   import Instagram from '../common/Instagram.vue'
   import SearchModal from '../common/SearchModal.vue'
-  import {HTTP} from '../store/getURL.js';
+  import {HTTP} from '../../store/getURL'
+  import router from '../../router/index'
 
   export default {
     components: {
@@ -138,6 +139,7 @@
       errors: []
     }),
     created() {
+      console.log(HTTP);
       HTTP.get('book/index')
       .then(response => {
         const { books } = response.data.data;
@@ -149,6 +151,9 @@
       })
     },
     methods: {
+      bookDetail(book) {
+        this.$router.push({ name: 'BookDetail', params:{slug: book.slug} });
+      },
       getImage(image){
         return image;
       }
