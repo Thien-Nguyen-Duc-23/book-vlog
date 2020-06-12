@@ -145,7 +145,7 @@
 </template>
 
 <script>
-  import {HTTP} from '../store/getURL.js';
+  import {HTTP} from '../../store/getURL';
 
   export default {
     data: () => ({
