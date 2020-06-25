@@ -313,7 +313,6 @@
         const { book } = response.data.data;
         this.book = book;
         this.date = book.created_at.date;
-        console.log(this.book);
       })
       .catch(e => {
         this.errors.push(e)

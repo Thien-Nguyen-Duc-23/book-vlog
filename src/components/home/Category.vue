@@ -40,7 +40,17 @@
           HTTP.get('category/list')
           .then(response => {
             const { categories } = response.data.data;
-            this.categoriesHome = categories;
+            const listCategories = [];
+            $.each(categories, function(key, value) {
+              listCategories.push(value);
+              if (Array.isArray(value.children_category) && value.children_category.length) {
+                $.each(value.children_category, function(subKey, subValue) {
+                  listCategories.push(subValue);
+                });
+              }
+            });
+            
+            this.categoriesHome = listCategories;
             resolve();
           })
           .catch(e => {
@@ -55,8 +65,8 @@
             margin: 0,
             nav: true,
             navText:[
-                "<i class='fa fa-angle-left'></i>",
-                "<i class='fa fa-angle-right'></i>"
+              "<i class='fa fa-angle-left'></i>",
+              "<i class='fa fa-angle-right'></i>"
             ],
             loop: true,
             dots: false,

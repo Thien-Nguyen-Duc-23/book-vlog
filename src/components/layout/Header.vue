@@ -137,7 +137,6 @@
       .then(response => {
         const { categories } = response.data.data;
         this.categories = categories;
-        console.log(this.categories);
       })
       .catch(e => {
         this.errors.push(e)
