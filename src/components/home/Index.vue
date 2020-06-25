@@ -139,12 +139,10 @@
       errors: []
     }),
     created() {
-      console.log(HTTP);
       HTTP.get('book/index')
       .then(response => {
         const { books } = response.data.data;
         this.books = books;
-        console.log(this.books);
       })
       .catch(e => {
         this.errors.push(e)

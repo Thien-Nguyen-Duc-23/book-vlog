@@ -157,7 +157,6 @@
       .then(response => {
         const { categories } = response.data.data;
         this.categorySibar = categories;
-        console.log(this.categorySibar);
       })
       .catch(e => {
         this.errors.push(e)
