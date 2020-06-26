@@ -42,75 +42,19 @@
           </div>
           <div class="popular-post mb-50">
               <div class="sidebar-title text-center">
-                  <h3 class="title uppercase">Popular Post</h3>
+                    <h3 class="title uppercase">Popular Post</h3>
               </div>
-              <div class="single-post mb-18">
+              <div v-for="book in bookTops" :key="book.id" class="single-post mb-18">
                   <div class="post-image hover-grow">
-                      <a href="standard-post.html"><img src="/static/images/blog/1.jpg" alt="post image"></a>
+                        <a @click="bookDetail(book)"><img v-bind:src="getImage(book.conver)"></a>
                   </div>
                   <div class="post-desc">
                       <ul>
-                          <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                          <li><a href="#"><i class="fa fa-user-o"></i>Admin</a></li>
+                            <li><i class="fa fa-calendar"></i>{{ book.created_at.date | formatDate }}</li>
+                            <li><a href=""><i class="fa fa-user-o"></i>{{ book.author }}</a></li>
                       </ul>
                       <div class="post-title">
-                          <h5 class="margin-0"><a href="standard-post.html">Duo Scripta An The Ditos Prieirmod...</a></h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-post mb-18">
-                  <div class="post-image hover-grow">
-                      <a href="standard-post.html"><img src="/static/images/blog/2.jpg" alt="post image"></a>
-                  </div>
-                  <div class="post-desc">
-                      <ul>
-                          <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                          <li><a href="#"><i class="fa fa-user-o"></i>Admin</a></li>
-                      </ul>
-                      <div class="post-title">
-                          <h5 class="margin-0"><a href="standard-post.html">Duo Scripta An The Ditos Prieirmod...</a></h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-post mb-18">
-                  <div class="post-image hover-grow">
-                      <a href="standard-post.html"><img src="/static/images/blog/3.jpg" alt="post image"></a>
-                  </div>
-                  <div class="post-desc">
-                      <ul>
-                          <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                          <li><a href="#"><i class="fa fa-user-o"></i>Admin</a></li>
-                      </ul>
-                      <div class="post-title">
-                          <h5 class="margin-0"><a href="standard-post.html">Duo Scripta An The Ditos Prieirmod...</a></h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-post mb-18">
-                  <div class="post-image hover-grow">
-                      <a href="standard-post.html"><img src="/static/images/blog/4.jpg" alt="post image"></a>
-                  </div>
-                  <div class="post-desc">
-                      <ul>
-                          <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                          <li><a href="#"><i class="fa fa-user-o"></i>Admin</a></li>
-                      </ul>
-                      <div class="post-title">
-                          <h5 class="margin-0"><a href="standard-post.html">Duo Scripta An The Ditos Prieirmod...</a></h5>
-                      </div>
-                  </div>
-              </div>
-              <div class="single-post">
-                  <div class="post-image hover-grow">
-                      <a href="standard-post.html"><img src="/static/images/blog/5.jpg" alt="post image"></a>
-                  </div>
-                  <div class="post-desc">
-                      <ul>
-                          <li><i class="fa fa-calendar"></i>June 28, 2019</li>
-                          <li><a href="#"><i class="fa fa-user-o"></i>Admin</a></li>
-                      </ul>
-                      <div class="post-title">
-                          <h5 class="margin-0"><a href="standard-post.html">Duo Scripta An The Ditos Prieirmod...</a></h5>
+                            <h5 class="margin-0"><a @click="bookDetail(book)">{{ book.short_title }}</a></h5>
                       </div>
                   </div>
               </div>
@@ -129,14 +73,14 @@
               <ul class="category-tags" >
                   <li v-for="category in categorySibar" :key="category.id">
                     <div v-if="category.children_category != []">
-                      <a href="#"># {{ category.name }} <span>({{ category.books }})</span></a>
+                      <a @click="bookOfCategory(category)"># {{ category.name }} <span>({{ category.books }})</span></a>
                       <ul v-if="category.children_category != []" >
                         <li v-for="children in category.children_category" :key="children.id">
-                          <a href="#"># {{ children.name }} <span>({{ children.books }})</span></a>
+                          <a @click="bookOfCategory(children)"># {{ children.name }} <span>({{ children.books }})</span></a>
                         </li>
                       </ul>
                     </div>
-                    <a v-else href="#"># {{ category.name }} <span>({{ category.books }})</span></a>
+                    <a v-else @click="bookOfCategory(category)"># {{ category.name }} <span>({{ category.books }})</span></a>
                   </li>
               </ul>
           </div>
@@ -145,22 +89,49 @@
 </template>
 
 <script>
-  import {HTTP} from '../../store/getURL';
+    import {HTTP} from '../../store/getURL';
+    import router from '../../router/index'
 
-  export default {
-    data: () => ({
-      categorySibar: [],
-      errors: []
-    }),
-    created() {
-      HTTP.get('category/list')
-      .then(response => {
-        const { categories } = response.data.data;
-        this.categorySibar = categories;
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+    export default {
+        data: () => ({
+            categorySibar: [],
+            errors: [],
+            bookTops: [],
+        }),
+        created() {
+            HTTP.get('category/list')
+            .then(response => {
+                const { categories } = response.data.data;
+                this.categorySibar = categories;
+            })
+            .catch(e => {
+                this.errors.push(e)
+            })
+
+            HTTP.get('book/top')
+            .then(response => {
+                const { data } = response.data;
+                this.bookTops = data;
+                console.log(this.bookTops);
+            })
+            .catch(e => {
+                this.errors.push(e)
+            })
+        },
+        methods: {
+            bookOfCategory(category) {
+                this.$router.push({ name: 'BookOfCategory', params:{slug: category.slug} }).catch(error => {
+                    if (error.name != "NavigationDuplicated") {
+                        throw error;
+                    }
+                });
+            },
+            bookDetail(book) {
+                this.$router.push({ name: 'BookDetail', params:{slug: book.slug} });
+            },
+            getImage(image){
+                return image;
+            }
+        }
     }
-  }
 </script>

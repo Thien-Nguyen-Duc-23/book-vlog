@@ -7,9 +7,9 @@
           <div v-for="category in categoriesHome" :key="category.id" class="single-category hover-grow">
             <div class="single-category hover-grow" >
               <div class="category-part">
-                <a href="categories5.html"><img v-bind:src="getImage(category.cover)" alt="Category Image"></a>
+                <a @click="bookOfCategory(category)"><img v-bind:src="getImage(category.cover)" alt="Category Image"></a>
                 <div class="category-title">
-                    <h3><a href="categories5.html">{{ category.name }}</a></h3>
+                    <h3><a @click="bookOfCategory(category)">{{ category.name }}</a></h3>
                 </div>
               </div>
             </div>
@@ -22,6 +22,8 @@
 </template>
 <script>
   import {HTTP} from '../../store/getURL'
+  import router from '../../router/index'
+
   export default {
     data: () => ({
       categoriesHome: [],
@@ -32,7 +34,7 @@
       //
     },
     methods: {
-      getImage(image){
+      getImage(image) {
         return image;
       },
       slider() {
@@ -57,27 +59,30 @@
             this.errors.push(e)
           })
         });
-      }
+      },
+      bookOfCategory(category) {
+        this.$router.push({ name: 'BookOfCategory', params:{slug: category.slug} });
+      },
     },
     mounted () {
       this.slider().then(() => {
         $('.owl-carousel').owlCarousel({
-            margin: 0,
-            nav: true,
-            navText:[
-              "<i class='fa fa-angle-left'></i>",
-              "<i class='fa fa-angle-right'></i>"
-            ],
-            loop: true,
-            dots: false,
-            items: 3,
-            autoplay: true,
-            animateOut: 'fadeOut',
-            autoplayTimeout: 4000,
-            autoplayHoverPause: true,
-            responsiveClass: true,
-            margin: 30,
-            smartSpeed: 2000,
+          margin: 0,
+          nav: true,
+          navText:[
+            "<i class='fa fa-angle-left'></i>",
+            "<i class='fa fa-angle-right'></i>"
+          ],
+          loop: true,
+          dots: false,
+          items: 3,
+          autoplay: true,
+          animateOut: 'fadeOut',
+          autoplayTimeout: 4000,
+          autoplayHoverPause: true,
+          responsiveClass: true,
+          margin: 30,
+          smartSpeed: 2000,
         });
       })
     },
