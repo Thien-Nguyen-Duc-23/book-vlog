@@ -136,7 +136,7 @@
     },
     data: () => ({
       books: [],
-      errors: []
+      errorsIndex: []
     }),
     created() {
       HTTP.get('book/index')
@@ -145,7 +145,7 @@
         this.books = books;
       })
       .catch(e => {
-        this.errors.push(e)
+        this.errorsIndex.push(e)
       })
     },
     methods: {
