@@ -304,7 +304,7 @@
     },
     data: () => ({
       book: [],
-      errors: [],
+      errorsDetail: [],
       date: null,
     }),
     created() {
@@ -315,7 +315,7 @@
         this.date = book.created_at.date;
       })
       .catch(e => {
-        this.errors.push(e)
+        this.errorsDetail.push(e)
       })
     },
     methods: {

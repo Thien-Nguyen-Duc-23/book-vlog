@@ -82,7 +82,7 @@
                                             <!--Single Post End-->
 
                                             <!--Contact Menu Start-->
-                                            <li class="last-item"><a href="contact.html" >Contact</a></li>
+                                            <li class="last-item"><a @click="usContact()" >Contact</a></li>
                                             <!--Contact Menu End-->
                                             </ul>
                                         </nav>
@@ -173,58 +173,61 @@
 </template>
 
 <script>
-  import {HTTP} from '../../store/getURL';
-  import User from '../../models/user';
+    import {HTTP} from '../../store/getURL';
+    import User from '../../models/user';
+    import router from '../../router/index'
 
-  export default {
-    data: () => ({
-        categories: [],
-        errorMes: [],
-        user: new User('', ''),
-        loading: false,
-        message: '',
-    }),
-    computed: {
-        loggedIn() {
-            return this.$store.state.auth.status.loggedIn;
-        }
-    },
-    created() {
-        HTTP.get('category/list')
-        .then(response => {
-            const { categories } = response.data.data;
-            this.categories = categories;
-        })
-        .catch(e => {
-            this.errorMes.push(e)
-        });
-    },
-    methods: {
-        handleLogin() {
-            this.loading = true;
-            this.$store.dispatch('auth/login', this.user).then (
-                user => {
-                    if (user.code === 200000) {
-                        $('#loginModal').modal('hide');
-                        alert("Login success");
-                        this.loggedIn = this.$store.state.auth.status.loggedIn;
-                    }
-                },
-                error => {
-                    this.loading = false;
-                    this.message = '';
-                    this.message =
-                        (error.response && error.response.data) ||
-                        error.message ||
-                        error.toString();
-                }
-            );
-
-            if (this.message) {
-                this.message = this.message.data.errors;
+    export default {
+        data: () => ({
+            categories: [],
+            errorMes: [],
+            user: new User('', ''),
+            loading: false,
+            message: '',
+        }),
+        computed: {
+            loggedIn() {
+                return this.$store.state.auth.status.loggedIn;
             }
+        },
+        created() {
+            HTTP.get('category/list')
+            .then(response => {
+                const { categories } = response.data.data;
+                this.categories = categories;
+            })
+            .catch(e => {
+                this.errorMes.push(e)
+            });
+        },
+        methods: {
+            handleLogin() {
+                this.loading = true;
+                this.$store.dispatch('auth/login', this.user).then (
+                    user => {
+                        if (user.code === 200000) {
+                            $('#loginModal').modal('hide');
+                            alert("Login success");
+                            this.loggedIn = this.$store.state.auth.status.loggedIn;
+                        }
+                    },
+                    error => {
+                        this.loading = false;
+                        this.message = '';
+                        this.message =
+                            (error.response && error.response.data) ||
+                            error.message ||
+                            error.toString();
+                    }
+                );
 
+                if (this.message) {
+                    this.message = this.message.data.errors;
+                }
+            },
+            usContact() {
+                this.$router.push({ name: 'Contact' });
+            }
         }
     }
-  }
 </script>
