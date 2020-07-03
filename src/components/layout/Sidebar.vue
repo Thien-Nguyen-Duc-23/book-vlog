@@ -95,7 +95,7 @@
     export default {
         data: () => ({
             categorySibar: [],
-            errors: [],
+            errorsSidebar: [],
             bookTops: [],
         }),
         created() {
@@ -105,17 +105,16 @@
                 this.categorySibar = categories;
             })
             .catch(e => {
-                this.errors.push(e)
+                this.errorsSidebar.push(e)
             })
 
             HTTP.get('book/top')
             .then(response => {
                 const { data } = response.data;
                 this.bookTops = data;
-                console.log(this.bookTops);
             })
             .catch(e => {
-                this.errors.push(e)
+                this.errorsSidebar.push(e)
             })
         },
         methods: {

@@ -111,7 +111,7 @@
     },
     data: () => ({
       bookOfCategories: [],
-      errors: [],
+      errorsOfCate: [],
       categoryName: null,
     }),
     created() {
@@ -123,7 +123,7 @@
         this.categoryName = this.$route.params.slug;
       })
       .catch(e => {
-        this.errors.push(e)
+        this.errorsOfCate.push(e)
       })
     },
     methods: {

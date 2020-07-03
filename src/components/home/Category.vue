@@ -27,7 +27,7 @@
   export default {
     data: () => ({
       categoriesHome: [],
-      errors: [],
+      errorsCate: [],
       isLoading: false
     }),
     created() {
@@ -56,7 +56,7 @@
             resolve();
           })
           .catch(e => {
-            this.errors.push(e)
+            this.errorsCate.push(e)
           })
         });
       },

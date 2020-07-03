@@ -394,5 +394,10 @@
         $("#loadMore").fadeOut('slow');
       }
     });
-	
+        
+    $('#loginModal').on('click', function (e) { 
+        $('#loginModal').modal('show'); 
+        // this.modal('show'); 
+    });
+
 })(jQuery);
